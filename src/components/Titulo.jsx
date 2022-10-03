@@ -1,8 +1,9 @@
 const Titulo = () => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <h1 className="display-3 py-3 text-center">Noticias</h1>
+            <hr />
+        </section>
     );
 };
 
