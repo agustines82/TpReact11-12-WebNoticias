@@ -1,16 +1,16 @@
 import ListaNoticias from "./ListaNoticias";
 import { Form, Row, Col } from "react-bootstrap";
 
-const Formulario = () => {
+const Formulario = ({ noticias }) => {
     return (
         <>
             <Form className="container border rounded py-3 ">
                 <Form.Group as={Row} className="justify-content-center" controlId="Form.ControlInput2">
-                    <Form.Label column sm="2" className="lead">
+                    <Form.Label sm="2" className="lead">
                         Buscar por categoria
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Select column sm="4" aria-label="Default select" name="categoria">
+                        <Form.Select sm="4" aria-label="Default select" name="categoria">
                             <option value="">Seleccione una opción...</option>
                             <option value="1">Negocios</option>
                             <option value="2">Entretenimiento</option>
