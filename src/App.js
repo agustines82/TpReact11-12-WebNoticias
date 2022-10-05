@@ -9,7 +9,7 @@ function App() {
 
     //ciclo de vida
     useEffect(() => {
-        consultarAPI().then((respuestaAPI) => {});
+        consultarAPI();
     }, []);
 
     const consultarAPI = async () => {
