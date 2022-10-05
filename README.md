@@ -17,7 +17,7 @@ Para mayor informacion sobre los requerimientos del practico acceda al siguiente
 
 En caso de querer clonar el proyecto acceda al repositorio publico del mismo en GitHub:
 
-[Git](https://github.com/agustines82/TpReact11-WebNoticias)
+[Git](https://github.com/agustines82/TpReact11-12-WebNoticias)
 
 posteriormente a clonar el proyecto ejecute el siguiente comando en la terminal:
 npm install
