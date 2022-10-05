@@ -19,6 +19,7 @@ function App() {
             setNoticias(dato.results);
         } catch (error) {
             //cartel de error
+            console.log(error);
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
