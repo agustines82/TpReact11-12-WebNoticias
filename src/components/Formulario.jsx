@@ -4,15 +4,40 @@ import { useState } from "react";
 
 const Formulario = ({ noticias }) => {
     //para filtrar las noticias por categoria: (lamentablemente la API solo me devuelve 10 noticias de las cuales casi todas son categoria top (mas leidas) por lo que en el proyecto no se podrà apreciar mucho èsta funcionabilidad)
-    const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
-    const handleChangeCategoria = (e) => {
-        const filtradoPorSelect = noticias.filter((item) => item.category[0] === e.target.value);
-        setNoticiasFiltradas(filtradoPorSelect);
+    const [noticiasFiltradas, setNoticiasFiltradas] = useState(noticias);
+
+    //console.log(noticiasFiltradas);
+
+    const handleChangePais = (e) => {
+        const noticiasXPais = noticiasFiltradas.filter((item) => item.country[0] === e.target.value);
+        setNoticiasFiltradas(noticiasXPais);
     };
+    const handleChangeCategoria = (e) => {
+        const noticiasXCategoria = noticiasFiltradas.filter((item) => item.category[0] === e.target.value);
+        setNoticiasFiltradas(noticiasXCategoria);
+    };
+
     return (
         <>
             <Form className="container border rounded py-3 ">
                 <Form.Group as={Row} className="justify-content-center" controlId="Form.ControlInput2">
+                    <Col sm="2">
+                        <Form.Label sm="2" className="lead fs-5">
+                            Buscar por paìs
+                        </Form.Label>
+                    </Col>
+                    <Col sm="8">
+                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChangePais}>
+                            <option value="">Seleccione una opción...</option>
+                            <option value="argentina">Argentina</option>
+                            <option value="mexico">Mexico</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="brazil">Brazil</option>
+                        </Form.Select>
+                    </Col>
+                </Form.Group>
+
+                <Form.Group as={Row} className="justify-content-center mt-2" controlId="Form.ControlInput2">
                     <Col sm="2">
                         <Form.Label sm="2" className="lead fs-5">
                             Buscar por categoria

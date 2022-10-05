@@ -9,6 +9,7 @@ const Noticia = ({ news }) => {
                     <Card.Body>
                         <h4>
                             <Badge bg="secondary">{news.category[0]}</Badge>
+                            <Badge bg="primary">{news.country[0]}</Badge>
                         </h4>
                         <Card.Title>{news.title}</Card.Title>
                         <Card.Text>{news.description}</Card.Text>
