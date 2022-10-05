@@ -18,14 +18,14 @@ En caso de querer clonar el proyecto acceda al repositorio publico del mismo en 
 [Git](https://github.com/agustines82/TpReact11-WebNoticias)
 
 posteriormente a clonar el proyecto ejecute el siguiente comando en la terminal:
-npm run install
+npm install
 
 ## Netlify
 
 Puedes ver el proyecto online
 [Netlify]()
 
-## autor
+## Autor
 
 -   Agustin Sampayo
 
