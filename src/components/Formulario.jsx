@@ -3,6 +3,9 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 
 const Formulario = ({ noticias }) => {
+    const handleChange = (e) => {
+        //e.target.value;
+    };
     return (
         <>
             <Form className="container border rounded py-3 ">
@@ -13,7 +16,7 @@ const Formulario = ({ noticias }) => {
                         </Form.Label>
                     </Col>
                     <Col sm="8">
-                        <Form.Select sm="4" aria-label="Default select" name="categoria">
+                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChange}>
                             <option value="">Seleccione una opción...</option>
                             <option value="bussines">Negocios</option>
                             <option value="entertainment">Entretenimiento</option>
