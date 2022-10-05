@@ -21,7 +21,7 @@ const Formulario = ({ noticias }) => {
                     <Col sm="8">
                         <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChange}>
                             <option value="">Seleccione una opción...</option>
-                            <option value="bussines">Negocios</option>
+                            <option value="business">Negocios</option>
                             <option value="entertainment">Entretenimiento</option>
                             <option value="environment">Medio Ambiente</option>
                             <option value="food">Comida</option>
