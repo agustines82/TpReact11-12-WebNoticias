@@ -5,6 +5,8 @@ https://newsapi.org/ o
 https://newsdata.io/docs
 Desde un select superior, debe poder elegir las diferentes categorías (provistas por la api ver en la documentación) y cargar en cards las mismas.
 
+Alternativa: Modifica la web anterior permitiendo que el usuario seleccione el país y la categoría de las noticias que quiere ver.
+
 ## Trabajo practico
 
 Para mayor informacion sobre los requerimientos del practico acceda al siguiente link:
@@ -22,8 +24,11 @@ npm install
 
 ## Netlify
 
-Puedes ver el proyecto online
+Puedes ver el proyecto online:
+Original:
 [Netlify](https://thriving-mochi-a56ada.netlify.app)
+Alternativa:
+[Netlify](https://eloquent-sprite-6bf781.netlify.app)
 
 ## Autor
 

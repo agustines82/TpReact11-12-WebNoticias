@@ -4,7 +4,8 @@ import { useState } from "react";
 
 const Formulario = ({ noticias }) => {
     //para filtrar las noticias por categoria: (lamentablemente la API solo me devuelve 10 noticias de las cuales casi todas son categoria top (mas leidas) por lo que en el proyecto no se podrà apreciar mucho èsta funcionabilidad)
-    const [noticiasFiltradas, setNoticiasFiltradas] = useState(noticias);
+    const news = noticias;
+    const [noticiasFiltradas, setNoticiasFiltradas] = useState(news);
 
     //console.log(noticiasFiltradas);
 
