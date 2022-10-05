@@ -5,7 +5,7 @@ import { useState } from "react";
 const Formulario = ({ noticias }) => {
     //para filtrar las noticias por categoria: (lamentablemente la API solo me devuelve 10 noticias de las cuales casi todas son categoria top (mas leidas) por lo que en el proyecto no se podrà apreciar mucho èsta funcionabilidad)
     const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
-    const handleChange = (e) => {
+    const handleChangeCategoria = (e) => {
         const filtradoPorSelect = noticias.filter((item) => item.category[0] === e.target.value);
         setNoticiasFiltradas(filtradoPorSelect);
     };
@@ -19,7 +19,7 @@ const Formulario = ({ noticias }) => {
                         </Form.Label>
                     </Col>
                     <Col sm="8">
-                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChange}>
+                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChangeCategoria}>
                             <option value="">Seleccione una opción...</option>
                             <option value="business">Negocios</option>
                             <option value="entertainment">Entretenimiento</option>
