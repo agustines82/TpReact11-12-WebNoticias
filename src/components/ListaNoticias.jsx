@@ -1,12 +1,14 @@
 import Noticia from "./Noticia";
 
-const ListaNoticias = () => {
+const ListaNoticias = ({ noticias }) => {
     return (
         <div>
             <div>
                 <section className="container border rounded">
                     <article className="container row justify-content-center align-items-center">
-                        <Noticia />
+                        {noticias.map((elemento, posicion) => (
+                            <Noticia key={posicion} news={elemento} />
+                        ))}
                     </article>
                 </section>
             </div>

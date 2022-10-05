@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 function App() {
-    const [noticias, setNoticias] = useState({});
+    const [noticias, setNoticias] = useState([]);
 
     //ciclo de vida
     useEffect(() => {
