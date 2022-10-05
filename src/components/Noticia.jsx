@@ -3,11 +3,13 @@ import { Card, Button, Badge } from "react-bootstrap";
 const Noticia = ({ news }) => {
     return (
         <>
-            <aside className="col-12 col-md-4 mt-3 bg-ligth ">
-                <Card className="my-2">
-                    <Card.Img variant="top" className="altura" src={news.image_url} />
+            <aside className="col-12 col-md-4 bg-ligth ">
+                <Card className="my-1">
+                    <Card.Img variant="top" src={news.image_url} />
                     <Card.Body>
-                        <Badge>{news.category[0]}</Badge>
+                        <h4>
+                            <Badge bg="secondary">{news.category[0]}</Badge>
+                        </h4>
                         <Card.Title>{news.title}</Card.Title>
                         <Card.Text>{news.description}</Card.Text>
                         <Button variant="primary">Leer articulo completo</Button>

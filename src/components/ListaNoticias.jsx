@@ -5,7 +5,7 @@ const ListaNoticias = ({ noticiasFiltradas }) => {
         <div>
             <div>
                 <section className="container border rounded">
-                    <article className="container row justify-content-center align-items-center">
+                    <article className="container row justify-content-center">
                         {noticiasFiltradas.map((elemento, posicion) => (
                             <Noticia key={posicion} news={elemento} />
                         ))}

@@ -14,7 +14,7 @@ const Formulario = ({ noticias }) => {
             <Form className="container border rounded py-3 ">
                 <Form.Group as={Row} className="justify-content-center" controlId="Form.ControlInput2">
                     <Col sm="2">
-                        <Form.Label sm="2" className="lead">
+                        <Form.Label sm="2" className="lead fs-5">
                             Buscar por categoria
                         </Form.Label>
                     </Col>
