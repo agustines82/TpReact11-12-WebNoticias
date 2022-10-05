@@ -1,21 +1,51 @@
 import ListaNoticias from "./ListaNoticias";
 import { Form, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
-const Formulario = ({ noticias }) => {
-    //para filtrar las noticias por categoria: (lamentablemente la API solo me devuelve 10 noticias de las cuales casi todas son categoria top (mas leidas) por lo que en el proyecto no se podrà apreciar mucho èsta funcionabilidad)
+const Formulario = () => {
+    const [noticias, setNoticias] = useState([]);
+    const [pais, setPais] = useState("ar");
+    const [categoria, setCategoria] = useState("sports");
 
-    const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
+    //ciclo de vida
+    useEffect(() => {
+        consultarAPI().then((respuestaListaNoticias) => {
+            setNoticias(respuestaListaNoticias);
+        });
+    });
 
+    const consultarAPI = async () => {
+        try {
+            const respuesta = await fetch(
+                `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
+            );
+            const listNews = await respuesta.json();
+
+            return listNews.articles;
+        } catch (error) {
+            //cartel de error
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error en el servidor",
+                footer: "Intenta entrar en unos minutos",
+            });
+            return false;
+        }
+    };
     //console.log(noticiasFiltradas);
 
     const handleChangePais = (e) => {
-        const noticiasXPais = noticias.filter((item) => item.country[0] === e.target.value);
-        setNoticiasFiltradas(noticiasXPais);
+        const paisSeleccionado = e.target.value;
+        setPais(paisSeleccionado);
+        consultarAPI();
     };
     const handleChangeCategoria = (e) => {
-        const noticiasXCategoria = noticiasFiltradas.filter((item) => item.category[0] === e.target.value);
-        setNoticiasFiltradas(noticiasXCategoria);
+        const categoriaSeleccionada = e.target.value;
+        setCategoria(categoriaSeleccionada);
+        consultarAPI();
     };
 
     return (
@@ -30,10 +60,10 @@ const Formulario = ({ noticias }) => {
                     <Col sm="8">
                         <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChangePais}>
                             <option value="">Seleccione una opción...</option>
-                            <option value="argentina">Argentina</option>
-                            <option value="mexico">Mexico</option>
-                            <option value="colombia">Colombia</option>
-                            <option value="brazil">Brazil</option>
+                            <option value="ar">Argentina</option>
+                            <option value="mx">Mexico</option>
+                            <option value="co">Colombia</option>
+                            <option value="br">Brazil</option>
                         </Form.Select>
                     </Col>
                 </Form.Group>
@@ -49,20 +79,16 @@ const Formulario = ({ noticias }) => {
                             <option value="">Seleccione una opción...</option>
                             <option value="business">Negocios</option>
                             <option value="entertainment">Entretenimiento</option>
-                            <option value="environment">Medio Ambiente</option>
-                            <option value="food">Comida</option>
+                            <option value="general">Medio Ambiente</option>
                             <option value="health">Salud</option>
-                            <option value="politics">Politica</option>
                             <option value="science">Ciencia</option>
                             <option value="sports">Deportes</option>
                             <option value="technology">Tecnología</option>
-                            <option value="top">Mas leídas</option>
-                            <option value="world">Mundo</option>
                         </Form.Select>
                     </Col>
                 </Form.Group>
             </Form>
-            <ListaNoticias noticiasFiltradas={noticiasFiltradas} />
+            <ListaNoticias noticias={noticias} />
         </>
     );
 };
