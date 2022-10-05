@@ -3,8 +3,11 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 
 const Formulario = ({ noticias }) => {
+    //para filtrar las noticias por categoria: (lamentablemente la API solo me devuelve 10 noticias de las cuales casi todas son categoria top (mas leidas) por lo que en el proyecto no se podrà apreciar mucho èsta funcionabilidad)
+    const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
     const handleChange = (e) => {
-        //e.target.value;
+        const filtradoPorSelect = noticias.filter((item) => item.category[0] === e.target.value);
+        setNoticiasFiltradas(filtradoPorSelect);
     };
     return (
         <>
@@ -33,7 +36,7 @@ const Formulario = ({ noticias }) => {
                     </Col>
                 </Form.Group>
             </Form>
-            <ListaNoticias noticias={noticias} />
+            <ListaNoticias noticiasFiltradas={noticiasFiltradas} />
         </>
     );
 };

@@ -17,12 +17,11 @@ function App() {
         try {
             const respuesta = await fetch("https://newsdata.io/api/1/news?apikey=pub_1194917cb6234758575287c9a2bd1e16ecbd9&country=ar&language=es");
             const dato = await respuesta.json();
-            //filtro todas las noticias que tengan imagen null (que no tengan imagenes)
-            const datoFiltrado = dato.results.filter((item) => item.image_url !== null);
-            console.log(datoFiltrado);
-            setNoticias(datoFiltrado);
+            //si quisiera filtrar las noticias que tengan imagen null (no lo hago por que me quedo sin noticias...)
+            //const datoFiltrado = dato.results.filter((item) => item.image_url !== null);
+            //setNoticias(datoFiltrado);
+            setNoticias(dato.results);
         } catch (error) {
-            console.log(error);
             //cartel de error
             Swal.fire({
                 icon: "error",
