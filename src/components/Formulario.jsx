@@ -1,6 +1,6 @@
 import ListaNoticias from "./ListaNoticias";
 import { Form, Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 const Formulario = () => {
@@ -8,21 +8,13 @@ const Formulario = () => {
     const [pais, setPais] = useState("ar");
     const [categoria, setCategoria] = useState("sports");
 
-    //ciclo de vida
-    useEffect(() => {
-        consultarAPI().then((respuestaListaNoticias) => {
-            setNoticias(respuestaListaNoticias);
-        });
-    });
-
     const consultarAPI = async () => {
         try {
             const respuesta = await fetch(
                 `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
             );
             const listNews = await respuesta.json();
-
-            return listNews.articles;
+            setNoticias(listNews.articles);
         } catch (error) {
             //cartel de error
             console.log(error);
