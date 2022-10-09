@@ -12,28 +12,27 @@ const Formulario = () => {
     const { pais, categoria } = formValues;
 
     useEffect(() => {
+        async function consultarAPI() {
+            try {
+                const respuestaJson = await fetch(
+                    `https://newsapi.org/v2/top-headlines?country=${formValues.pais}&category=${formValues.categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
+                );
+                const respuestaJs = await respuestaJson.json();
+                setNoticias(respuestaJs.articles);
+            } catch (error) {
+                //cartel de error
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error en el servidor",
+                    footer: "Intenta entrar en unos minutos",
+                });
+                return false;
+            }
+        }
         consultarAPI();
     }, [formValues]);
-
-    const consultarAPI = async () => {
-        try {
-            const respuestaJson = await fetch(
-                `https://newsapi.org/v2/top-headlines?country=${formValues.pais}&category=${formValues.categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
-            );
-            const respuestaJs = await respuestaJson.json();
-            setNoticias(respuestaJs.articles);
-        } catch (error) {
-            //cartel de error
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Error en el servidor",
-                footer: "Intenta entrar en unos minutos",
-            });
-            return false;
-        }
-    };
 
     const handleChange = ({ target }) => {
         setFormValues({
