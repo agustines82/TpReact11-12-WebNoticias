@@ -1,20 +1,27 @@
 import ListaNoticias from "./ListaNoticias";
 import { Form, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Formulario = () => {
     const [noticias, setNoticias] = useState([]);
-    const [pais, setPais] = useState("ar");
-    const [categoria, setCategoria] = useState("sports");
+    const [formValues, setFormValues] = useState({
+        pais: "ar",
+        categoria: "sports",
+    });
+    const { pais, categoria } = formValues;
+
+    useEffect(() => {
+        consultarAPI();
+    }, [formValues]);
 
     const consultarAPI = async () => {
         try {
-            const respuesta = await fetch(
-                `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
+            const respuestaJson = await fetch(
+                `https://newsapi.org/v2/top-headlines?country=${formValues.pais}&category=${formValues.categoria}&apiKey=1f4a2b6df0ee4f7a86ee0caba83ad58b`
             );
-            const listNews = await respuesta.json();
-            setNoticias(listNews.articles);
+            const respuestaJs = await respuestaJson.json();
+            setNoticias(respuestaJs.articles);
         } catch (error) {
             //cartel de error
             console.log(error);
@@ -27,17 +34,12 @@ const Formulario = () => {
             return false;
         }
     };
-    //console.log(noticiasFiltradas);
 
-    const handleChangePais = (e) => {
-        const paisSeleccionado = e.target.value;
-        setPais(paisSeleccionado);
-        consultarAPI();
-    };
-    const handleChangeCategoria = (e) => {
-        const categoriaSeleccionada = e.target.value;
-        setCategoria(categoriaSeleccionada);
-        consultarAPI();
+    const handleChange = ({ target }) => {
+        setFormValues({
+            ...formValues,
+            [target.name]: target.value,
+        });
     };
 
     return (
@@ -50,7 +52,7 @@ const Formulario = () => {
                         </Form.Label>
                     </Col>
                     <Col sm="8">
-                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChangePais}>
+                        <Form.Select sm="4" aria-label="Default select" name="pais" value={pais} onChange={handleChange}>
                             <option value="">Seleccione una opción...</option>
                             <option value="ar">Argentina</option>
                             <option value="mx">Mexico</option>
@@ -67,7 +69,7 @@ const Formulario = () => {
                         </Form.Label>
                     </Col>
                     <Col sm="8">
-                        <Form.Select sm="4" aria-label="Default select" name="categoria" onChange={handleChangeCategoria}>
+                        <Form.Select sm="4" aria-label="Default select" name="categoria" value={categoria} onChange={handleChange}>
                             <option value="">Seleccione una opción...</option>
                             <option value="business">Negocios</option>
                             <option value="entertainment">Entretenimiento</option>
